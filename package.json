@@ -1,15 +1,34 @@
 {
   "name": "iares",
-  "version": "1.0.0",
+  "version": "3.0.2",
   "description": "",
-  "main": "index.js",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "scripts": {
+    "dev": "cross-env NODE_ENV=development && pnpm app:build && pnpm app:watch",
+    "prod": "cross-env NODE_ENV=production && pnpm app:build",
+    "app:build": "tsc --emitDeclarationOnly && bun build.config.ts",
+    "app:watch": "run-when-changed --watch './src/**' --exec 'pnpm app:build'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4"
+    "@biomejs/biome": "^1.9.4",
+    "@types/jsdom": "^21.1.7",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "esbuild": "^0.24.2",
+    "glob": "^11.0.1",
+    "global-jsdom": "^25.0.0",
+    "jsdom": "^25.0.1",
+    "jsonc-parser": "^3.3.1",
+    "run-when-changed": "^2.1.0",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "htm": "^3.1.1"
   }
 }
